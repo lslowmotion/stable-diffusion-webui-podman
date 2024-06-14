@@ -1,16 +1,15 @@
 # Stable Diffusion WebUI Podman
 
-Run Stable Diffusion on your Radeon machine with a nice UI without any hassle!
+Run Stable Diffusion web browser accessible UI on your CUDA/ROCm machine without any hassle!
 
 NOTE:
-- Only ROCm supported for now
 - Supports AUTOMATIC1111 and ComfyUI
-- CUDA support to be worked on later
+- Supports CUDA and ROCm
+- Supports SD 1.5 and SDXL for AUTOMATIC1111 and ComfyUI
+- Supports SD 3 for ComfyUI
 - Requires podman-compose 1.1.0 or newer
 
-## Setup & Usage
-
-> Note: In progress
+## Quick Setup
 
 **Download necessary models**
 ```
@@ -18,15 +17,36 @@ podman-compose --profile download build
 podman-compose --profile download up -d
 ```
 
-**Run AUTOMATIC1111 Stable Diffusion Web UI**
+**Run AUTOMATIC1111 Stable Diffusion Web UI with CUDA support**
 ```
 podman-compose --profile auto build
 podman-compose --profile auto up -d
+
 ```
 
+**You can change `--profile auto-cuda` to different profile:**
+
+| Profile    | Description |
+|--------------|---------------------------------|
+| auto-cuda    | AUTOMATIC1111 with CUDA support |
+| auto-rocm    | AUTOMATIC1111 with ROCm support |
+| comfyui-cuda | ComfyUI with CUDA support       |
+| comfyui-rocm | ComfyUI with ROCm support       |
+
+## Set the container as systemd service to allow running on user login
+
 **Create AUTOMATIC1111 Stable Diffusion Web UI Podman service**
+
+Find the name of the running container
+
 ```
-podman generate systemd --new webui-docker_auto_1 > ~/.config/systemd/user/automatic1111.service
+podman ps
+```
+
+Set the container as systemd service. E.g. for container named `webui-podman_auto_1`:
+
+```
+podman generate systemd --new webui-podman_auto_1 > ~/.config/systemd/user/automatic1111.service
 ```
 
 **Enable and run AUTOMATIC1111 Stable Diffusion Web UI Podman service**
@@ -34,7 +54,20 @@ podman generate systemd --new webui-docker_auto_1 > ~/.config/systemd/user/autom
 systemctl --user enable --now automatic1111.service
 ```
 
-You can change `--profile auto` to `--profile comfy` to change AUTOMATIC1111 to ComfyUI
+## Stable Diffusion 3
+
+**Download models here:**
+[Stable Diffusion 3 on HuggingFace](https://huggingface.co/stabilityai/stable-diffusion-3-medium)
+
+**Put SD3 models here:**
+```
+/data/models/Stable-diffusion
+```
+
+**Put SD3 text encoders here:**
+```
+/data/models/CLIPEncoder
+```
 
 ## Features
 
