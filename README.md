@@ -21,7 +21,6 @@ podman-compose --profile download up -d
 ```
 podman-compose --profile auto build
 podman-compose --profile auto up -d
-
 ```
 
 **You can change `--profile auto-cuda` to different profile:**
