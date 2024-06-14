@@ -13,14 +13,15 @@ NOTE:
 
 **Download necessary models**
 ```
-$ podman-compose --profile download build
-$ podman-compose --profile download up -d
+podman-compose --profile download build
+podman-compose --profile download up -d
 ```
 
 **Run AUTOMATIC1111 Stable Diffusion Web UI with CUDA support**
 ```
-$ podman-compose --profile auto-cuda build
-$ podman-compose --profile auto-cuda up -d
+podman-compose --profile auto build
+podman-compose --profile auto up -d
+
 ```
 
 **You can change `--profile auto-cuda` to different profile:**
@@ -39,18 +40,18 @@ $ podman-compose --profile auto-cuda up -d
 Find the name of the running container
 
 ```
-$ podman ps
+podman ps
 ```
 
 Set the container as systemd service. E.g. for container named `webui-podman_auto_1`:
 
 ```
-$ podman generate systemd --new webui-podman_auto_1 > ~/.config/systemd/user/automatic1111.service
+podman generate systemd --new webui-podman_auto_1 > ~/.config/systemd/user/automatic1111.service
 ```
 
 **Enable and run AUTOMATIC1111 Stable Diffusion Web UI Podman service**
 ```
-$ systemctl --user enable --now automatic1111.service
+systemctl --user enable --now automatic1111.service
 ```
 
 ## Stable Diffusion 3
