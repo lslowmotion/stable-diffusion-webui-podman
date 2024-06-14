@@ -19,8 +19,8 @@ podman-compose --profile download up -d
 
 **Run AUTOMATIC1111 Stable Diffusion Web UI with CUDA support**
 ```
-podman-compose --profile auto build
-podman-compose --profile auto up -d
+podman-compose --profile auto-cuda build
+podman-compose --profile auto-cuda up -d
 ```
 
 **You can change `--profile auto-cuda` to different profile:**
