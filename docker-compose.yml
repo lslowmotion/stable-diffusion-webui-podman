@@ -43,7 +43,16 @@ services:
       # - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
       - CLI_ARGS=--allow-code --enable-insecure-extension-access --api
 
-
+  forge-cuda: &forge-cuda
+    <<: *base_service
+    profiles: ["forge-cuda"]
+    build: ./services/sd-webui-forge-cuda
+    image: sd-forge:latest
+    devices:
+      - nvidia.com/gpu=all
+    environment:
+      # - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+      - CLI_ARGS=--allow-code --enable-insecure-extension-access --api
   # auto-cpu:
   #   <<: *automatic
   #   profiles: ["auto-cpu"]
