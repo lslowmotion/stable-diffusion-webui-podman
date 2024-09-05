@@ -14,8 +14,7 @@
 # RUN . /clone.sh clip-interrogator https://github.com/pharmapsychotic/clip-interrogator 2cf03aaf6e704197fd0dae7c7f96aa59cf1b11c9
 # RUN . /clone.sh generative-models https://github.com/Stability-AI/generative-models 45c443b316737a4ab6e40413d7794a7f5657c19f
 
-
-FROM pytorch/pytorch:2.3.1-cuda12.1-cudnn8-runtime
+FROM rocm/pytorch:rocm6.1.3_ubuntu22.04_py3.10_pytorch_release-2.1.2
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -31,11 +30,10 @@ WORKDIR /
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone https://github.com/lllyasviel/stable-diffusion-webui-forge.git && \
   cd stable-diffusion-webui-forge && \
-  pip install starlette
   # git checkout tags/v1.9.3 && \
-  # pip install --upgrade pip && \
+  pip install --upgrade pip && \
   # pip install -r requirements_versions.txt && \
-  # pip install gradio
+  pip install -r requirements_versions.txt
   # pip install pytorch_lightning==1.7.7 torchmetrics==0.11.4 pydantic==1.10.11 && \
   # mkdir repositories && cd repositories && \
   # git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui-assets.git
@@ -56,23 +54,21 @@ ENV ROOT=/stable-diffusion-webui-forge
 
 # there seems to be a memory leak (or maybe just memory not being freed fast enough) that is fixed by this version of malloc
 # maybe move this up to the dependencies list.
-# RUN apt-get -y install libgoogle-perftools-dev && apt-get clean
-# ENV LD_PRELOAD=libtcmalloc.so
+RUN apt-get -y install libgoogle-perftools-dev && apt-get clean
+ENV LD_PRELOAD=libtcmalloc.so
 
 COPY . /docker
 
 # RUN \
-#   # mv ${ROOT}/style.css ${ROOT}/user.css && \
-#   # one of the ugliest hacks I ever wrote \
-# #   ls /opt/conda/lib/python3.12/site-packages && \
-# #   which python3 && \
+  # mv ${ROOT}/style.css ${ROOT}/user.css && \
+  # one of the ugliest hacks I ever wrote \
+#   ls /opt/conda/lib/python3.12/site-packages && \
 #   which python3 && \
-#   python3 --version && \
-# #   pip show gradio && \
+#   pip show gradio && \
 
-#   # I HAVE NO IDEA WHAT THESE SHITS BELOW FOR LOL
-#   sed -i 's/in_app_dir = .*/in_app_dir = True/g' /opt/conda/envs/py_3.10/lib/python3.10/site-packages/gradio/routes.py && \
-#   git config --global --add safe.directory '*'
+  # I HAVE NO IDEA WHAT THESE SHITS BELOW FOR LOL
+  # sed -i 's/in_app_dir = .*/in_app_dir = True/g' /opt/conda/envs/py_3.10/lib/python3.10/site-packages/gradio/routes.py && \
+  # git config --global --add safe.directory '*'
 
 WORKDIR ${ROOT}
 # ENV NVIDIA_VISIBLE_DEVICES=all

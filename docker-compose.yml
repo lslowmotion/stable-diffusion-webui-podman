@@ -53,6 +53,18 @@ services:
     environment:
       # - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
       - CLI_ARGS=--allow-code --enable-insecure-extension-access --api
+
+  forge-rocm: &forge-rocm
+    <<: *base_service
+    profiles: ["forge-rocm"]
+    build: ./services/sd-webui-forge-rocm
+    image: sd-forge:latest
+    devices:
+      - /dev/dri
+      - /dev/kfd
+    environment:
+      # - CLI_ARGS=--allow-code --medvram --xformers --enable-insecure-extension-access --api
+      - CLI_ARGS=--allow-code --enable-insecure-extension-access --api
   # auto-cpu:
   #   <<: *automatic
   #   profiles: ["auto-cpu"]
