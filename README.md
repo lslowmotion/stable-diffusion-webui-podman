@@ -131,5 +131,5 @@ Special thanks to everyone behind these awesome projects, without them, none of 
 - [AbdBarho/stable-diffusion-webui-docker](https://github.com/AbdBarho/stable-diffusion-webui-docker)
 - [city96/ComfyUI-GGUF](https://github.com/city96/ComfyUI-GGUF)
 - [city96 GGUF models](https://huggingface.co/city96)
-- [mys/ggml_clip-vit-large-patch14](https://huggingface.co/mys/ggml_clip-vit-large-patch14/tree/main)
+- [zer0int/CLIP-GmP-ViT-L-14](https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/tree/main)
 - and many many more.
