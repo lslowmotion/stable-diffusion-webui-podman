@@ -72,7 +72,7 @@ services:
     <<: *base_service
     profiles: ["comfy-cuda"]
     build: ./services/comfy-cuda/
-    image: sd-comfy:5eb98f00927ace00b6b3d01ed9c76b113fc4ec9f
+    image: sd-comfy:5cbaa9e07c97296b536f240688f5a19300ecf30d
     devices:
       - nvidia.com/gpu=all
     environment:
@@ -82,7 +82,7 @@ services:
     <<: *base_service
     profiles: ["comfy-rocm"]
     build: ./services/comfy-rocm/
-    image: sd-comfy:5eb98f00927ace00b6b3d01ed9c76b113fc4ec9f
+    image: sd-comfy:5cbaa9e07c97296b536f240688f5a19300ecf30d
     devices:
       - /dev/dri
       - /dev/kfd

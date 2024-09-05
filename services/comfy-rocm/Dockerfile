@@ -1,4 +1,4 @@
-FROM rocm/pytorch:rocm6.1_ubuntu22.04_py3.10_pytorch_2.1.2
+FROM rocm/pytorch:rocm6.1.3_ubuntu22.04_py3.10_pytorch_release-2.1.2
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -9,8 +9,12 @@ RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
   git checkout master && \
-  git reset --hard 5eb98f00927ace00b6b3d01ed9c76b113fc4ec9f && \
+  git reset --hard 5cbaa9e07c97296b536f240688f5a19300ecf30d && \
   pip install -r requirements.txt
+
+# INSTALL GGUF
+RUN --mount=type=cache,target=/root/.cache/pip,Z \
+pip install --upgrade gguf
 
 WORKDIR ${ROOT}
 COPY . /docker/

@@ -11,6 +11,8 @@ mkdir -vp /data/.cache \
   /data/models/GFPGAN \
   /data/models/RealESRGAN \
   /data/models/LDSR \
+  /data/models/CLIPEncoder \
+  /data/models/unet \
   /data/models/VAE
 
 echo "Downloading, this might take a while..."
@@ -23,7 +25,7 @@ parallel --will-cite -a /docker/checksums.sha256 "echo -n {} | sha256sum -c"
 
 cat <<EOF
 By using this software, you agree to the following licenses:
-https://github.com/AbdBarho/stable-diffusion-webui-docker/blob/master/LICENSE
+https://github.com/lslowmotion/stable-diffusion-webui-podman/blob/master/LICENSE
 https://github.com/CompVis/stable-diffusion/blob/main/LICENSE
 https://github.com/AUTOMATIC1111/stable-diffusion-webui/blob/master/LICENSE.txt
 https://github.com/invoke-ai/InvokeAI/blob/main/LICENSE

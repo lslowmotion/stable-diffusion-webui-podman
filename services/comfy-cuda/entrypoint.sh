@@ -32,6 +32,12 @@ if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui-workspace-manager)" ]; 
   git -C /data/config/comfy/custom_nodes clone https://github.com/11cafe/comfyui-workspace-manager.git
 fi
 
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-GGUF)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/city96/ComfyUI-GGUF.git
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-GGUF/requirements.txt
+
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}
   . /data/config/comfy/startup.sh

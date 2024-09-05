@@ -7,6 +7,7 @@ NOTE:
 - Supports CUDA and ROCm
 - Supports SD 1.5 and SDXL for AUTOMATIC1111 and ComfyUI
 - Supports SD 3 for ComfyUI
+- Supports FLUX.1-dev GGUF for ComfyUI
 - Requires podman-compose 1.1.0 or newer
 
 ## Quick Setup
@@ -68,6 +69,26 @@ systemctl --user enable --now automatic1111.service
 /data/models/CLIPEncoder
 ```
 
+## FLUX.1 GGUF
+
+By default, this will download the Q3_K_S quantization. But you can download different quantization for both FLUX.1-dev GGUF model and text encoder.
+
+**Download different quantization here:**
+
+[FLUX.1-dev GGUF models](https://huggingface.co/city96/FLUX.1-dev-gguf/tree/main)
+
+[Text encoder](https://huggingface.co/city96/t5-v1_1-xxl-encoder-gguf/tree/main)
+
+You will also need to download VAE manually because of HuggingFace login requirements.
+
+**Download VAE here:**
+[FLUX.1-dev VAE](https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/vae/diffusion_pytorch_model.safetensors)
+
+**Put VAE here:**
+```
+/data/models/VAE
+```
+
 ## Features
 
 This repository provides multiple UIs for you to play around with stable diffusion:
@@ -108,4 +129,7 @@ Special thanks to everyone behind these awesome projects, without them, none of 
 - [CompVis/stable-diffusion](https://github.com/CompVis/stable-diffusion)
 - [Sygil-webui](https://github.com/Sygil-Dev/sygil-webui)
 - [AbdBarho/stable-diffusion-webui-docker](https://github.com/AbdBarho/stable-diffusion-webui-docker)
+- [city96/ComfyUI-GGUF](https://github.com/city96/ComfyUI-GGUF)
+- [city96 GGUF models](https://huggingface.co/city96)
+- [mys/ggml_clip-vit-large-patch14](https://huggingface.co/mys/ggml_clip-vit-large-patch14/tree/main)
 - and many many more.
