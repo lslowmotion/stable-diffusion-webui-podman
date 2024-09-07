@@ -1,5 +1,3 @@
-version: '3.9'
-
 x-base_service: &base_service
     ports:
       - "${WEBUI_PORT:-7860}:7860"
@@ -24,7 +22,7 @@ services:
     <<: *base_service
     profiles: ["auto-cuda"]
     build: ./services/AUTOMATIC1111-cuda
-    image: sd-auto:193
+    image: auto-cuda
     devices:
       - nvidia.com/gpu=all
     environment:
@@ -35,7 +33,7 @@ services:
     <<: *base_service
     profiles: ["auto-rocm"]
     build: ./services/AUTOMATIC1111-rocm
-    image: sd-auto:193
+    image: auto-rocm
     devices:
       - /dev/dri
       - /dev/kfd
@@ -72,7 +70,7 @@ services:
     <<: *base_service
     profiles: ["comfy-cuda"]
     build: ./services/comfy-cuda/
-    image: sd-comfy:5cbaa9e07c97296b536f240688f5a19300ecf30d
+    image: comfy-cuda
     devices:
       - nvidia.com/gpu=all
     environment:
@@ -82,7 +80,7 @@ services:
     <<: *base_service
     profiles: ["comfy-rocm"]
     build: ./services/comfy-rocm/
-    image: sd-comfy:5cbaa9e07c97296b536f240688f5a19300ecf30d
+    image: comfy-rocm
     devices:
       - /dev/dri
       - /dev/kfd
