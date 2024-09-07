@@ -15,7 +15,7 @@ NOTE:
 **Download necessary models**
 ```
 podman-compose --profile download build
-podman-compose --profile download up -d
+podman-compose --profile download up
 ```
 
 **Run AUTOMATIC1111 Stable Diffusion Web UI with CUDA support**
