@@ -15,6 +15,7 @@ services:
   download:
     build: ./services/download/
     profiles: ["download"]
+    image: models-downloader
     volumes:
       - *v1
 
