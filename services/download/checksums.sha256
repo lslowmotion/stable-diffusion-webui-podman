@@ -1,8 +1,6 @@
 e2cd4703ab14f4d01fd1383a8a8b266f9a5833dacee8e6a79d3bf21a1b6be5ad  /data/models/GFPGAN/GFPGANv1.4.pth
 4fa0d38905f75ac06eb49a7951b426670021be3018265fd191d2125df9d682f1  /data/models/RealESRGAN/RealESRGAN_x4plus.pth
 f872d837d3c90ed2e05227bed711af5671a6fd1c9f7d7e91c911a61f155e99da  /data/models/RealESRGAN/RealESRGAN_x4plus_anime_6B.pth
-c209caecac2f97b4bb8f4d726b70ac2ac9b35904b7fc99801e1f5e61f9210c13  /data/models/LDSR/model.ckpt
-9d6ad53c5dafeb07200fb712db14b813b527edd262bc80ea136777bdb41be2ba  /data/models/LDSR/project.yaml
 f65bb921fe637ba9588278f54981afc567be408e38ee038d2fe3acf3e11188bd  /data/models/unet/flux1-dev-Q3_K_S.gguf
 31ebe18e901bfb6e5709a20ec1c95fce29bce2b9545073231e0f909a53239f5c  /data/models/CLIPEncoder/t5-v1_1-xxl-encoder-Q3_K_S.gguf
 eddcf5e2e2a88550aab21e04895e8ce4b2977e6c11dbbc7675b07927a3cda0dd  /data/models/CLIPEncoder/ViT-L-14-TEXT-detail-improved-hiT-GmP-TE-only-HF.safetensors
