@@ -82,7 +82,7 @@ By default, this will download the Q3_K_S quantization. But you can download dif
 You will also need to download VAE manually because of HuggingFace login requirements.
 
 **Download VAE here:**
-[FLUX.1-dev VAE](https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/vae/diffusion_pytorch_model.safetensors)
+[FLUX.1-dev VAE](https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/ae.safetensors)
 
 **Put VAE here:**
 ```
