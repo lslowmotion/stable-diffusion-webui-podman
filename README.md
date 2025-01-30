@@ -6,7 +6,7 @@ NOTE:
 - Supports AUTOMATIC1111 and ComfyUI
 - Supports CUDA and ROCm
 - Supports SD 1.5 and SDXL for AUTOMATIC1111 and ComfyUI
-- Supports SD 3 for ComfyUI
+- Supports SD 3 and 3.5 for ComfyUI
 - Supports FLUX.1-dev GGUF for ComfyUI
 - Requires podman-compose 1.1.0 or newer
 
@@ -69,6 +69,27 @@ systemctl --user enable --now automatic1111.service
 /data/models/CLIPEncoder
 ```
 
+## Stable Diffusion 3.5 GGUF
+
+**Download models here:**
+
+[Stable Diffusion 3.5 large GGUF by city96 on HuggingFace](https://huggingface.co/city96/stable-diffusion-3.5-large-gguf)
+
+[Stable Diffusion 3.5 medium GGUF by city96 on HuggingFace](https://huggingface.co/city96/stable-diffusion-3.5-medium-gguf)
+
+**Put SD3.5 GGUF models here:**
+```
+/data/models/unet
+```
+
+**Download SD3.5 VAE here:**
+[Stable Diffusion 3.5 VAE on HuggingFace](https://huggingface.co/stabilityai/stable-diffusion-3.5-large/blob/main/vae/diffusion_pytorch_model.safetensors)
+
+**Put SD3.5 VAE here:**
+```
+/data/models/VAE
+```
+
 ## FLUX.1 GGUF
 
 By default, this will download the Q3_K_S quantization. But you can download different quantization for both FLUX.1-dev GGUF model and text encoder.
@@ -84,7 +105,7 @@ You will also need to download VAE manually because of HuggingFace login require
 **Download VAE here:**
 [FLUX.1-dev VAE](https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/ae.safetensors)
 
-**Put VAE here:**
+**Put FLUX.1 VAE here:**
 ```
 /data/models/VAE
 ```
