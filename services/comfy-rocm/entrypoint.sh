@@ -27,25 +27,26 @@ done
 if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI_UltimateSDUpscale)" ]; then
   git -C /data/config/comfy/custom_nodes clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale --recursive
 else
-  cd /data/config/comfy/custom_nodes/ComfyUI_UltimateSDUpscale
-  git pull
+  git -C /data/config/comfy/custom_nodes/ComfyUI_UltimateSDUpscale pull
 fi
 
 if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui-workspace-manager)" ]; then
   git -C /data/config/comfy/custom_nodes clone https://github.com/11cafe/comfyui-workspace-manager.git
 else
-  cd /data/config/comfy/custom_nodes/comfyui-workspace-manager
-  git pull
+  git -C /data/config/comfy/custom_nodes/comfyui-workspace-manager pull
 fi
 
 if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-GGUF)" ]; then
   git -C /data/config/comfy/custom_nodes clone https://github.com/city96/ComfyUI-GGUF.git
 else
-  cd /data/config/comfy/custom_nodes/ComfyUI-GGUF
-  git pull
+  git -C /data/config/comfy/custom_nodes/ComfyUI-GGUF pull
 fi
 
 pip install -r /data/config/comfy/custom_nodes/ComfyUI-GGUF/requirements.txt
+
+# DEBUGGING
+# pip list
+# rocm-smi
 
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}

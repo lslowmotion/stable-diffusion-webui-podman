@@ -1,4 +1,4 @@
-FROM rocm/pytorch:rocm6.1.3_ubuntu22.04_py3.10_pytorch_release-2.1.2
+FROM rocm/pytorch:rocm6.3.2_ubuntu24.04_py3.12_pytorch_release_2.4.0
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -10,6 +10,7 @@ RUN --mount=type=cache,target=/root/.cache/pip,Z \
   cd ${ROOT} && \
   git checkout tags/v0.3.13 && \
   pip install -r requirements.txt
+  # pip install -r requirements.txt --index-url https://download.pytorch.org/whl/nightly/rocm6.3
 
 # INSTALL GGUF
 RUN --mount=type=cache,target=/root/.cache/pip,Z \

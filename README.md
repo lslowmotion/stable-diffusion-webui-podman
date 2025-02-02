@@ -30,8 +30,8 @@ podman-compose --profile auto-cuda up -d
 |--------------|---------------------------------|
 | `auto-cuda`    | AUTOMATIC1111 with CUDA support |
 | `auto-rocm`    | AUTOMATIC1111 with ROCm support |
-| `comfyui-cuda` | ComfyUI with CUDA support       |
-| `comfyui-rocm` | ComfyUI with ROCm support       |
+| `comfy-cuda` | ComfyUI with CUDA support       |
+| `comfy-rocm` | ComfyUI with ROCm support       |
 
 ## Set the container as systemd service to allow running on user login
 
