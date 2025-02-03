@@ -9,8 +9,9 @@ RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
   git checkout tags/v0.3.13 && \
-  pip install -r requirements.txt
-  # pip install -r requirements.txt --index-url https://download.pytorch.org/whl/nightly/rocm6.3
+  pip install -r requirements.txt && \
+  pip install --pre --force-reinstall torch torchvision torchaudio numpy==1.26.4 --index-url https://download.pytorch.org/whl/nightly/rocm6.3 && \
+  pip list
 
 # INSTALL GGUF
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
