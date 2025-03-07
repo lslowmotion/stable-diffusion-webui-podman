@@ -20,7 +20,12 @@ WORKDIR ${ROOT}
 COPY . /docker/
 RUN chmod u+x /docker/entrypoint.sh && cp /docker/extra_model_paths.yaml ${ROOT}
 
-ENV PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS="" SYCL_CACHE_PERSISTENT=1 USE_XETLA="OFF" SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS=1 ONEAPI_DEVICE_SELECTOR="level_zero:0" ZES_ENABLE_SYSMAN=1 DEVICE=Arc
+
+ENV PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
+
+# I have no idea about these Arc specific env
+ENV SYCL_CACHE_PERSISTENT=1 SYCL_PI_LEVEL_ZERO_USE_IMMEDIATE_COMMANDLISTS=1 ZES_ENABLE_SYSMAN=1
+
 EXPOSE 7860
 ENTRYPOINT ["/docker/entrypoint.sh"]
-CMD python -u main.py --use-pytorch-cross-attention --disable-ipex-optimize --listen --port 7860 ${CLI_ARGS}
+CMD python -u main.py --listen --port 7860 ${CLI_ARGS}
