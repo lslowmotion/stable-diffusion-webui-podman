@@ -8,9 +8,10 @@ ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
-  git checkout tags/v0.3.13 && \
-  pip install -r requirements.txt && \
-  pip install --pre --force-reinstall torch torchvision torchaudio numpy==1.26.4 --index-url https://download.pytorch.org/whl/nightly/rocm6.3 && \
+  git checkout tags/v0.3.14 && \
+  pip install torchsde numpy>=1.25.0 einops transformers>=4.28.1 tokenizers>=0.13.3 sentencepiece safetensors>=0.4.2 aiohttp pyyaml Pillow scipy tqdm psutil kornia>=0.7.1 spandrel soundfile && \
+  # pip install -r requirements.txt && \
+  # pip install --pre --force-reinstall torch torchvision torchaudio numpy==1.26.4 --index-url https://download.pytorch.org/whl/nightly/rocm6.3 && \
   pip list
 
 # INSTALL GGUF

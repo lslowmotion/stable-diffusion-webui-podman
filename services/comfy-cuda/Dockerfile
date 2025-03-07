@@ -8,7 +8,7 @@ ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
-  git checkout tags/v0.3.13 && \
+  git checkout tags/v0.3.19 && \
   pip install -r requirements.txt
 
 # INSTALL GGUF
