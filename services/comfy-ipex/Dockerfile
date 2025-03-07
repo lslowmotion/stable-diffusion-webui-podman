@@ -10,7 +10,6 @@ RUN --mount=type=cache,target=/root/.cache/pip,Z \
   cd ${ROOT} && \
   git checkout tags/v0.3.19 && \
   pip install -r requirements.txt && \
-  pip install torch==2.5.1+cxx11.abi torchvision==0.20.1+cxx11.abi torchaudio==2.5.1+cxx11.abi intel-extension-for-pytorch==2.5.10+xpu --extra-index-url https://pytorch-extension.intel.com/release-whl/stable/bmg/cn/ && \
   pip list
 
 # INSTALL GGUF
