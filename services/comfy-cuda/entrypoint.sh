@@ -53,7 +53,7 @@ fi
 pip install -r /data/config/comfy/custom_nodes/ComfyUI-WanVideoWrapper/requirements.txt
 
 if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-TeaCache)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-TeaCache.git
+  git -C /data/config/comfy/custom_nodes clone https://github.com/welltop-cn/ComfyUI-TeaCache.git
 else
   git -C /data/config/comfy/custom_nodes/ComfyUI-TeaCache pull
 fi

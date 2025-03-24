@@ -1,5 +1,3 @@
-# FROM pytorch/pytorch:2.6.0-cuda12.6-cudnn9-runtime
-# FROM nvcr.io/nvidia/pytorch:25.02-py3
 FROM ghcr.io/pytorch/pytorch-nightly:2.8.0.dev20250323-cuda12.8-cudnn9-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
@@ -12,7 +10,6 @@ RUN --mount=type=cache,target=/root/.cache/pip,Z \
   cd ${ROOT} && \
   git checkout tags/v0.3.27 && \
   pip install -r requirements.txt && \
-  # pip install torchsde numpy>=1.25.0 einops transformers>=4.28.1 tokenizers>=0.13.3 sentencepiece safetensors>=0.4.2 aiohttp pyyaml Pillow scipy tqdm psutil kornia>=0.7.1 spandrel soundfile && \
   pip list
 
 # INSTALL GGUF
