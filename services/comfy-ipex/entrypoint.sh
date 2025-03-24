@@ -60,6 +60,10 @@ fi
 
 pip install -r /data/config/comfy/custom_nodes/ComfyUI-TeaCache/requirements.txt
 
+# DEBUGGING
+# pip list
+# rocm-smi
+
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}
   . /data/config/comfy/startup.sh

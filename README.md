@@ -4,7 +4,7 @@ Run Stable Diffusion web browser accessible UI on your CUDA/ROCm machine without
 
 NOTE:
 - Supports AUTOMATIC1111 and ComfyUI
-- Supports CUDA and ROCm
+- Supports CUDA, ROCm, and IPEX (as per latest commit, IPEX is only supported on Intel Arc A Series and Data Center GPU)
 - Supports SD 1.5 and SDXL for AUTOMATIC1111 and ComfyUI
 - Supports SD 3 and 3.5 for ComfyUI
 - Supports FLUX.1-dev GGUF for ComfyUI
@@ -32,6 +32,7 @@ podman-compose --profile auto-cuda up -d
 | `auto-rocm`    | AUTOMATIC1111 with ROCm support |
 | `comfy-cuda` | ComfyUI with CUDA support       |
 | `comfy-rocm` | ComfyUI with ROCm support       |
+| `comfy-ipex` | ComfyUI with IPEX support       |
 
 ## Set the container as systemd service to allow running on user login
 

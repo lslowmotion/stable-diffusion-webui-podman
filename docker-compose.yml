@@ -75,7 +75,7 @@ services:
     devices:
       - nvidia.com/gpu=all
     environment:
-      - CLI_ARGS=
+      - CLI_ARGS=--fast
 
   comfy-rocm: &comfy-rocm
     <<: *base_service
@@ -85,6 +85,16 @@ services:
     devices:
       - /dev/dri
       - /dev/kfd
+    environment:
+      - CLI_ARGS=
+
+  comfy-ipex: &comfy-ipex
+    <<: *base_service
+    profiles: ["comfy-ipex"]
+    build: ./services/comfy-ipex/
+    image: comfy-ipex
+    devices:
+      - /dev/dri
     environment:
       - CLI_ARGS=
 
