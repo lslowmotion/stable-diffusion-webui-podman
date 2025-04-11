@@ -60,6 +60,14 @@ fi
 
 pip install -r /data/config/comfy/custom_nodes/ComfyUI-TeaCache/requirements.txt
 
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/nunchaku_nodes)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/mit-han-lab/ComfyUI-nunchaku.git nunchaku_nodes
+else
+  git -C /data/config/comfy/custom_nodes/nunchaku_nodes pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/nunchaku_nodes/requirements.txt
+
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}
   . /data/config/comfy/startup.sh

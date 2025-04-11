@@ -7,7 +7,9 @@ NOTE:
 - Supports CUDA, ROCm, and IPEX (as per latest commit, IPEX is only supported on Intel Arc A Series and Data Center GPU)
 - Supports SD 1.5 and SDXL for AUTOMATIC1111 and ComfyUI
 - Supports SD 3 and 3.5 for ComfyUI
-- Supports FLUX.1-dev GGUF for ComfyUI
+- Supports FLUX.1-dev GGUF and Nunchaku SVDQuant for ComfyUI
+- Supports Wan2.1 GGUF
+- Supports TeaCache
 - Requires podman-compose 1.1.0 or newer
 
 ## Quick Setup
@@ -91,7 +93,9 @@ systemctl --user enable --now automatic1111.service
 /data/models/VAE
 ```
 
-## FLUX.1 GGUF
+## FLUX.1 
+
+### GGUF
 
 By default, this will download the Q3_K_S quantization. But you can download different quantization for both FLUX.1-dev GGUF model and text encoder.
 
@@ -103,12 +107,39 @@ By default, this will download the Q3_K_S quantization. But you can download dif
 
 You will also need to download VAE manually because of HuggingFace login requirements.
 
+### Nunchaku SVDQuant
+
+Download your desired SVDQuant model from [Hugging Face: SVDQuant](https://huggingface.co/collections/mit-han-lab/svdquant-67493c2c2e62a1fc6e93f45c).
+
+Put the complete directory and its contents here:
+```
+/data/models/unet
+```
+For example:
+```
+/data/models/unet/svdq-fp4-flux.1-dev
+```
+
+Read more: [Nunchaku Nodes](https://github.com/mit-han-lab/ComfyUI-nunchaku?tab=readme-ov-file#nunchaku-nodes)
+
+### VAE
+
 **Download VAE here:**
 [FLUX.1-dev VAE](https://huggingface.co/black-forest-labs/FLUX.1-dev/blob/main/ae.safetensors)
 
 **Put FLUX.1 VAE here:**
 ```
 /data/models/VAE
+```
+
+## Wan 2.1
+
+**Download Wan 2.1 GGUF and workflow JSON here:**
+[calcuis/wan-gguf](https://huggingface.co/calcuis/wan-gguf/tree/main)
+
+Put GGUF files here:
+```
+/data/models/unet
 ```
 
 ## Features
@@ -154,4 +185,6 @@ Special thanks to everyone behind these awesome projects, without them, none of 
 - [city96/ComfyUI-GGUF](https://github.com/city96/ComfyUI-GGUF)
 - [city96 GGUF models](https://huggingface.co/city96)
 - [zer0int/CLIP-GmP-ViT-L-14](https://huggingface.co/zer0int/CLIP-GmP-ViT-L-14/tree/main)
+- [ali-vilab/TeaCache](https://github.com/ali-vilab/TeaCache)
+- [welltop-cn/ComfyUI-TeaCache](https://github.com/welltop-cn/ComfyUI-TeaCache)
 - and many many more.

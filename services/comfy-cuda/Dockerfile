@@ -12,6 +12,10 @@ RUN --mount=type=cache,target=/root/.cache/pip,Z \
   pip install -r requirements.txt && \
   pip list
 
+# INSTALL NUNCHAKU SVDQUANT SUPPORT
+RUN --mount=type=cache,target=/root/.cache/pip,Z \
+  pip install https://huggingface.co/mit-han-lab/nunchaku/resolve/main/nunchaku-0.2.0+torch2.8-cp311-cp311-linux_x86_64.whl
+
 # INSTALL GGUF
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   pip install --upgrade gguf
