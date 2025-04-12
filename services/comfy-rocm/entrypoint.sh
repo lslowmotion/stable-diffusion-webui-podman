@@ -44,9 +44,27 @@ fi
 
 pip install -r /data/config/comfy/custom_nodes/ComfyUI-GGUF/requirements.txt
 
-# DEBUGGING
-# pip list
-# rocm-smi
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-WanVideoWrapper)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-WanVideoWrapper pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-WanVideoWrapper/requirements.txt
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-TeaCache)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/welltop-cn/ComfyUI-TeaCache.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-TeaCache pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-TeaCache/requirements.txt
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/SeaArtLab/ComfyUI-Long-CLIP.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP pull
+fi
 
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}

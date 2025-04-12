@@ -107,7 +107,7 @@ By default, this will download the Q3_K_S quantization. But you can download dif
 
 You will also need to download VAE manually because of HuggingFace login requirements.
 
-### Nunchaku SVDQuant
+### Nunchaku SVDQuant (CUDA only)
 
 Download your desired SVDQuant model from [Hugging Face: SVDQuant](https://huggingface.co/collections/mit-han-lab/svdquant-67493c2c2e62a1fc6e93f45c).
 

@@ -68,6 +68,12 @@ fi
 
 pip install -r /data/config/comfy/custom_nodes/nunchaku_nodes/requirements.txt
 
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/SeaArtLab/ComfyUI-Long-CLIP.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP pull
+fi
+
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}
   . /data/config/comfy/startup.sh
