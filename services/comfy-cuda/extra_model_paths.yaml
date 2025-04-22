@@ -16,6 +16,7 @@ a111:
   clip: models/CLIPEncoder
   unet: models/unet
   embeddings: embeddings
+  clip_vision: models/clip_vision
 
   custom_nodes: config/comfy/custom_nodes
 

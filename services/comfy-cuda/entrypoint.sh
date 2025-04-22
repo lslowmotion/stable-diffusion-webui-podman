@@ -74,6 +74,46 @@ else
   git -C /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP pull
 fi
 
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-FramePackWrapper.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper/requirements.txt
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-KJNodes)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-KJNodes.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-KJNodes pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-KJNodes/requirements.txt
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite/requirements.txt
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI_essentials)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/cubiq/ComfyUI_essentials.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI_essentials pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI_essentials/requirements.txt
+
+# if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui_HiDream-Sampler)" ]; then
+#   git -C /data/config/comfy/custom_nodes clone https://github.com/lum3on/comfyui_HiDream-Sampler.git
+# else
+#   git -C /data/config/comfy/custom_nodes/comfyui_HiDream-Sampler pull
+# fi
+
+# pip install -r /data/config/comfy/custom_nodes/comfyui_HiDream-Sampler/requirements.txt
+
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}
   . /data/config/comfy/startup.sh
