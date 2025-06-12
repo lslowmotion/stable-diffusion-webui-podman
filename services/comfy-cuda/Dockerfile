@@ -1,4 +1,4 @@
-FROM ghcr.io/pytorch/pytorch-nightly:2.8.0.dev20250323-cuda12.8-cudnn9-runtime
+FROM ghcr.io/pytorch/pytorch:2.7.0-cuda12.8-cudnn9-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -8,13 +8,13 @@ ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
-  git checkout tags/v0.3.27 && \
+  git checkout tags/v0.3.40 && \
   pip install -r requirements.txt && \
   pip list
 
 # INSTALL NUNCHAKU SVDQUANT SUPPORT
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
-  pip install https://huggingface.co/mit-han-lab/nunchaku/resolve/main/nunchaku-0.2.0+torch2.8-cp311-cp311-linux_x86_64.whl
+  pip install https://huggingface.co/mit-han-lab/nunchaku/resolve/main/nunchaku-0.3.0+torch2.7-cp311-cp311-linux_x86_64.whl
 
 # INSTALL GGUF
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
@@ -23,6 +23,18 @@ RUN --mount=type=cache,target=/root/.cache/pip,Z \
 # INSTALL cv2, matplotlib
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
 pip install opencv-python-headless matplotlib
+
+# INSTALL sageattention
+RUN --mount=type=cache,target=/root/.cache/pip,Z \
+pip install sageattention
+
+# INSTALL apex
+RUN --mount=type=cache,target=/root/.cache/pip,Z \
+pip install apex
+
+# INSTALL xformers
+RUN --mount=type=cache,target=/root/.cache/pip,Z \
+pip install -U xformers --index-url https://download.pytorch.org/whl/cu128
 
 WORKDIR ${ROOT}
 COPY . /docker/
