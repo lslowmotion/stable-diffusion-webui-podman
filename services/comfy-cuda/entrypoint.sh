@@ -60,13 +60,13 @@ fi
 
 pip install -r /data/config/comfy/custom_nodes/ComfyUI-TeaCache/requirements.txt
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/nunchaku_nodes)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/mit-han-lab/ComfyUI-nunchaku.git nunchaku_nodes
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-nunchaku)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/nunchaku-tech/ComfyUI-nunchaku.git ComfyUI-nunchaku
 else
-  git -C /data/config/comfy/custom_nodes/nunchaku_nodes pull
+  git -C /data/config/comfy/custom_nodes/ComfyUI-nunchaku pull
 fi
 
-pip install -r /data/config/comfy/custom_nodes/nunchaku_nodes/requirements.txt
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-nunchaku/requirements.txt
 
 if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP)" ]; then
   git -C /data/config/comfy/custom_nodes clone https://github.com/SeaArtLab/ComfyUI-Long-CLIP.git
