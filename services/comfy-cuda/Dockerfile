@@ -8,13 +8,13 @@ ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
-  git checkout tags/v0.3.60 && \
+  git checkout tags/v0.3.64 && \
   pip install -r requirements.txt && \
   pip list
 
 # INSTALL NUNCHAKU SVDQUANT SUPPORT
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
-  pip install https://huggingface.co/nunchaku-tech/nunchaku/resolve/main/nunchaku-1.0.0+torch2.8-cp311-cp311-linux_x86_64.whl
+  pip install https://huggingface.co/nunchaku-tech/nunchaku/resolve/main/nunchaku-1.0.1+torch2.8-cp311-cp311-linux_x86_64.whl
 
 # INSTALL GGUF
 RUN --mount=type=cache,target=/root/.cache/pip,Z \

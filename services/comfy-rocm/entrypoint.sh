@@ -11,6 +11,7 @@ MOUNTS["${ROOT}/input"]="/data/config/comfy/input"
 MOUNTS["${ROOT}/custom_nodes"]="/data/config/comfy/custom_nodes"
 MOUNTS["${ROOT}/my_workflows"]="/data/config/comfy/my_workflows"
 MOUNTS["${ROOT}/output"]="/output/comfy"
+MOUNTS["${ROOT}/user"]="/data/config/comfy/user"
 
 for to_path in "${!MOUNTS[@]}"; do
   set -Eeuo pipefail
@@ -30,11 +31,11 @@ else
   git -C /data/config/comfy/custom_nodes/ComfyUI_UltimateSDUpscale pull
 fi
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui-workspace-manager)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/11cafe/comfyui-workspace-manager.git
-else
-  git -C /data/config/comfy/custom_nodes/comfyui-workspace-manager pull
-fi
+# if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui-workspace-manager)" ]; then
+#   git -C /data/config/comfy/custom_nodes clone https://github.com/11cafe/comfyui-workspace-manager.git
+# else
+#   git -C /data/config/comfy/custom_nodes/comfyui-workspace-manager pull
+# fi
 
 if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-GGUF)" ]; then
   git -C /data/config/comfy/custom_nodes clone https://github.com/city96/ComfyUI-GGUF.git
@@ -65,6 +66,38 @@ if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP)" ]; then
 else
   git -C /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP pull
 fi
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-FramePackWrapper.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper/requirements.txt
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-KJNodes)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-KJNodes.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-KJNodes pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-KJNodes/requirements.txt
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite/requirements.txt
+
+if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI_essentials)" ]; then
+  git -C /data/config/comfy/custom_nodes clone https://github.com/cubiq/ComfyUI_essentials.git
+else
+  git -C /data/config/comfy/custom_nodes/ComfyUI_essentials pull
+fi
+
+pip install -r /data/config/comfy/custom_nodes/ComfyUI_essentials/requirements.txt
 
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}

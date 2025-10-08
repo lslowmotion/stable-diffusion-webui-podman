@@ -11,6 +11,7 @@ MOUNTS["${ROOT}/input"]="/data/config/comfy/input"
 MOUNTS["${ROOT}/custom_nodes"]="/data/config/comfy/custom_nodes"
 MOUNTS["${ROOT}/my_workflows"]="/data/config/comfy/my_workflows"
 MOUNTS["${ROOT}/output"]="/output/comfy"
+MOUNTS["${ROOT}/user"]="/data/config/comfy/user"
 
 for to_path in "${!MOUNTS[@]}"; do
   set -Eeuo pipefail
@@ -30,11 +31,11 @@ else
   git -C /data/config/comfy/custom_nodes/ComfyUI_UltimateSDUpscale pull
 fi
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui-workspace-manager)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/11cafe/comfyui-workspace-manager.git
-else
-  git -C /data/config/comfy/custom_nodes/comfyui-workspace-manager pull
-fi
+# if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui-workspace-manager)" ]; then
+#   git -C /data/config/comfy/custom_nodes clone https://github.com/11cafe/comfyui-workspace-manager.git
+# else
+#   git -C /data/config/comfy/custom_nodes/comfyui-workspace-manager pull
+# fi
 
 if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-GGUF)" ]; then
   git -C /data/config/comfy/custom_nodes clone https://github.com/city96/ComfyUI-GGUF.git
