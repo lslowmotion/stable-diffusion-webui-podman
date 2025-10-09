@@ -18,7 +18,7 @@ pip install --upgrade gguf
 
 # INSTALL VARIOUS NECESSARY PACKAGE
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
-pip install sageattention onnx
+pip install sageattention onnx onnxruntime
 
 WORKDIR ${ROOT}
 COPY . /docker/
