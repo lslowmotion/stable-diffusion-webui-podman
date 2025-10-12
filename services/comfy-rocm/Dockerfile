@@ -8,7 +8,8 @@ ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
-  git checkout tags/v0.3.64 && \
+  # AMD performance workaround. See https://github.com/comfyanonymous/ComfyUI/pull/10302
+  git checkout a125cd84b054a57729b5eecab930ca9408719832 && \
   pip install -r requirements.txt && \
   pip list
 
