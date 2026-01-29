@@ -25,96 +25,49 @@ for to_path in "${!MOUNTS[@]}"; do
   echo Mounted $(basename "${from_path}")
 done
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI_UltimateSDUpscale)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/ssitu/ComfyUI_UltimateSDUpscale --recursive
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI_UltimateSDUpscale pull
-fi
+# --- Helper function to handle install safely ---
+# This prevents the container from crashing if a requirements.txt is missing
+install_node() {
+    local DIR="/data/config/comfy/custom_nodes/$1"
+    local REPO="$2"
+    
+    if [ -z "$(ls -A $DIR 2>/dev/null)" ]; then
+        git -C /data/config/comfy/custom_nodes clone "$REPO" "$1" --recursive
+    else
+        git -C "$DIR" pull
+    fi
 
-# if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui-workspace-manager)" ]; then
-#   git -C /data/config/comfy/custom_nodes clone https://github.com/11cafe/comfyui-workspace-manager.git
-# else
-#   git -C /data/config/comfy/custom_nodes/comfyui-workspace-manager pull
-# fi
+    if [ -f "$DIR/requirements.txt" ]; then
+        echo "Installing requirements for $1..."
+        pip install -r "$DIR/requirements.txt"
+    fi
+}
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-GGUF)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/city96/ComfyUI-GGUF.git
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI-GGUF pull
-fi
+# --- Node Installations (Refactored for cleaner reading) ---
 
-pip install -r /data/config/comfy/custom_nodes/ComfyUI-GGUF/requirements.txt
+install_node "ComfyUI_UltimateSDUpscale" "https://github.com/ssitu/ComfyUI_UltimateSDUpscale"
+# install_node "comfyui-workspace-manager" "https://github.com/11cafe/comfyui-workspace-manager.git"
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-WanVideoWrapper)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-WanVideoWrapper.git
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI-WanVideoWrapper pull
-fi
+install_node "ComfyUI-GGUF" "https://github.com/city96/ComfyUI-GGUF.git"
 
-pip install -r /data/config/comfy/custom_nodes/ComfyUI-WanVideoWrapper/requirements.txt
+install_node "ComfyUI-WanVideoWrapper" "https://github.com/kijai/ComfyUI-WanVideoWrapper.git"
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-TeaCache)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/welltop-cn/ComfyUI-TeaCache.git
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI-TeaCache pull
-fi
+install_node "ComfyUI-TeaCache" "https://github.com/welltop-cn/ComfyUI-TeaCache.git"
 
-pip install -r /data/config/comfy/custom_nodes/ComfyUI-TeaCache/requirements.txt
+install_node "ComfyUI-nunchaku" "https://github.com/nunchaku-tech/ComfyUI-nunchaku.git"
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-nunchaku)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/nunchaku-tech/ComfyUI-nunchaku.git ComfyUI-nunchaku
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI-nunchaku pull
-fi
+# ComfyUI-Long-CLIP doesn't seem to have a requirements.txt in your original script, but using the function is safe.
+install_node "ComfyUI-Long-CLIP" "https://github.com/SeaArtLab/ComfyUI-Long-CLIP.git"
 
-pip install -r /data/config/comfy/custom_nodes/ComfyUI-nunchaku/requirements.txt
+install_node "ComfyUI-FramePackWrapper" "https://github.com/kijai/ComfyUI-FramePackWrapper.git"
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/SeaArtLab/ComfyUI-Long-CLIP.git
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI-Long-CLIP pull
-fi
+install_node "ComfyUI-KJNodes" "https://github.com/kijai/ComfyUI-KJNodes.git"
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-FramePackWrapper.git
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper pull
-fi
+install_node "ComfyUI-VideoHelperSuite" "https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git"
 
-pip install -r /data/config/comfy/custom_nodes/ComfyUI-FramePackWrapper/requirements.txt
+install_node "ComfyUI_essentials" "https://github.com/cubiq/ComfyUI_essentials.git"
 
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-KJNodes)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/kijai/ComfyUI-KJNodes.git
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI-KJNodes pull
-fi
-
-pip install -r /data/config/comfy/custom_nodes/ComfyUI-KJNodes/requirements.txt
-
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/Kosinkadink/ComfyUI-VideoHelperSuite.git
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite pull
-fi
-
-pip install -r /data/config/comfy/custom_nodes/ComfyUI-VideoHelperSuite/requirements.txt
-
-if [ -z "$(ls -A /data/config/comfy/custom_nodes/ComfyUI_essentials)" ]; then
-  git -C /data/config/comfy/custom_nodes clone https://github.com/cubiq/ComfyUI_essentials.git
-else
-  git -C /data/config/comfy/custom_nodes/ComfyUI_essentials pull
-fi
-
-pip install -r /data/config/comfy/custom_nodes/ComfyUI_essentials/requirements.txt
-
-# if [ -z "$(ls -A /data/config/comfy/custom_nodes/comfyui_HiDream-Sampler)" ]; then
-#   git -C /data/config/comfy/custom_nodes clone https://github.com/lum3on/comfyui_HiDream-Sampler.git
-# else
-#   git -C /data/config/comfy/custom_nodes/comfyui_HiDream-Sampler pull
-# fi
-
-# pip install -r /data/config/comfy/custom_nodes/comfyui_HiDream-Sampler/requirements.txt
-
+# install_node "comfyui_HiDream-Sampler" "https://github.com/lum3on/comfyui_HiDream-Sampler.git"
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}
   . /data/config/comfy/startup.sh

@@ -99,6 +99,12 @@ fi
 
 pip install -r /data/config/comfy/custom_nodes/ComfyUI_essentials/requirements.txt
 
+# if [ -z "$(ls -A /data/config/comfy/custom_nodes/ovum-cudnn-wrapper)" ]; then
+#   git -C /data/config/comfy/custom_nodes clone https://github.com/sfinktah/ovum-cudnn-wrapper.git
+# else
+#   git -C /data/config/comfy/custom_nodes/ovum-cudnn-wrapper pull
+# fi
+
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}
   . /data/config/comfy/startup.sh

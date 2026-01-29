@@ -1,4 +1,4 @@
-FROM docker.io/rocm/pytorch:rocm7.0_ubuntu22.04_py3.10_pytorch_release_2.8.0
+FROM docker.io/rocm/pytorch:rocm7.1_ubuntu22.04_py3.10_pytorch_release_2.8.0
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
@@ -10,6 +10,7 @@ RUN --mount=type=cache,target=/root/.cache/pip,Z \
   cd ${ROOT} && \
   # AMD performance workaround. See https://github.com/comfyanonymous/ComfyUI/pull/10302
   git checkout a125cd84b054a57729b5eecab930ca9408719832 && \
+  # git checkout tags/v0.3.64 && \
   pip install -r requirements.txt && \
   pip list
 
@@ -28,4 +29,4 @@ RUN chmod u+x /docker/entrypoint.sh && cp /docker/extra_model_paths.yaml ${ROOT}
 ENV PYTHONPATH="${PYTHONPATH}:${PWD}" CLI_ARGS=""
 EXPOSE 7860
 ENTRYPOINT ["/docker/entrypoint.sh"]
-CMD TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL=1 python -u main.py --listen --use-pytorch-cross-attention --port 7860 ${CLI_ARGS}
+CMD ROCBLAS_USE_HIPBLASLT=1 TORCH_ROCM_AOTRITON_ENABLE_EXPERIMENTAL=1 python -u main.py --listen --use-pytorch-cross-attention --port 7860 ${CLI_ARGS}

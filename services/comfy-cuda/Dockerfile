@@ -1,20 +1,26 @@
-FROM ghcr.io/pytorch/pytorch:2.8.0-cuda12.9-cudnn9-runtime
+FROM ghcr.io/pytorch/pytorch:2.10.0-cuda13.0-cudnn9-runtime
 
 ENV DEBIAN_FRONTEND=noninteractive PIP_PREFER_BINARY=1
 
-RUN apt-get update && apt-get install -y git cargo nasm ffmpeg libsm6 libxext6 && apt-get clean
+RUN apt-get update && apt-get install -y git cargo nasm ffmpeg libsm6 libxext6 python3-venv && apt-get clean
+
+# Create the venv
+RUN python3 -m venv --system-site-packages /opt/venv
+
+# Ensure the venv is used by default
+ENV PATH="/opt/venv/bin:$PATH"
 
 ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
-  git checkout tags/v0.3.64 && \
+  git checkout tags/v0.11.0 && \
   pip install -r requirements.txt && \
   pip list
 
 # INSTALL NUNCHAKU SVDQUANT SUPPORT
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
-  pip install https://huggingface.co/nunchaku-tech/nunchaku/resolve/main/nunchaku-1.0.1+torch2.8-cp311-cp311-linux_x86_64.whl
+  pip install https://github.com/nunchaku-ai/nunchaku/releases/download/v1.2.1/nunchaku-1.2.1+cu13.0torch2.10-cp312-cp312-linux_x86_64.whl
 
 # INSTALL GGUF
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
