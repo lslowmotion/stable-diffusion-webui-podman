@@ -68,6 +68,11 @@ install_node "ComfyUI-VideoHelperSuite" "https://github.com/Kosinkadink/ComfyUI-
 install_node "ComfyUI_essentials" "https://github.com/cubiq/ComfyUI_essentials.git"
 
 # install_node "comfyui_HiDream-Sampler" "https://github.com/lum3on/comfyui_HiDream-Sampler.git"
+
+install_node "ComfyUI_ACE-Step" "https://github.com/billwuhao/ComfyUI_ACE-Step.git"
+
+install_node "cg-use-everywhere" "https://github.com/chrisgoringe/cg-use-everywhere.git"
+
 if [ -f "/data/config/comfy/startup.sh" ]; then
   pushd ${ROOT}
   . /data/config/comfy/startup.sh
