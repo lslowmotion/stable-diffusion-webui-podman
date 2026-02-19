@@ -38,9 +38,13 @@ pip install sageattention
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
 pip install apex
 
+# INSTALL flash attention
+RUN --mount=type=cache,target=/root/.cache/pip,Z \
+pip install flash_attn_3 --find-links https://windreamer.github.io/flash-attention3-wheels/cu130_torch2100 --extra-index-url https://download.pytorch.org/whl/cu130
+
 # INSTALL xformers
-# RUN --mount=type=cache,target=/root/.cache/pip,Z \
-# pip install -U xformers --index-url https://download.pytorch.org/whl/cu129
+RUN --mount=type=cache,target=/root/.cache/pip,Z \
+pip install --pre -U xformers
 
 WORKDIR ${ROOT}
 COPY . /docker/
