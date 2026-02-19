@@ -14,7 +14,7 @@ ENV ROOT=/stable-diffusion
 RUN --mount=type=cache,target=/root/.cache/pip,Z \
   git clone --recursive https://github.com/comfyanonymous/ComfyUI.git ${ROOT} && \
   cd ${ROOT} && \
-  git checkout tags/v0.12.3 && \
+  git checkout tags/v0.14.2 && \
   pip install -r requirements.txt && \
   pip list
 
